@@ -1,3 +1,4 @@
+const btns = document.querySelector("#btn-wrapper")
 let humanScore = 0
 let computerScore = 0
 
@@ -36,8 +37,18 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
-playRound(getHumanChoice(), getComputerChoice())
-playRound(getHumanChoice(), getComputerChoice())
-playRound(getHumanChoice(), getComputerChoice())
-playRound(getHumanChoice(), getComputerChoice())
-playRound(getHumanChoice(), getComputerChoice())
+btns.addEventListener("click", function(event) {
+  let target = event.target
+
+  switch(target.textContent.toLowerCase()) {
+    case 'rock':
+      console.log('rock');
+      break;
+    case 'paper':
+      console.log('paper');
+      break;
+    case 'scissors':
+      console.log('scissors');
+      break;
+  }
+})
