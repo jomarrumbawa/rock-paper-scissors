@@ -1,5 +1,7 @@
 const btns = document.querySelector("#btn-wrapper")
 const gameMessage = document.querySelector("#game-message")
+const humanScoreEl = document.querySelector("#human-score span")
+const computerScoreEl = document.querySelector("#computer-score span")
 let humanScore = 0
 let computerScore = 0
 
@@ -12,6 +14,19 @@ function getComputerChoice() {
 function getHumanChoice() {
   const choice = prompt("Rock, paper or scissors?")
   return choice.toLowerCase()
+}
+
+function renderScore() {
+  humanScoreEl.textContent = humanScore
+  computerScoreEl.textContent = computerScore
+}
+
+function checkForWinner() {
+  if (humanScore === 5) {
+    gameMessage.textContent = 'You beat the computer!'
+  } else if (computerScore === 5) {
+    gameMessage.textContent = 'You lost to the computer!'
+  }
 }
 
 function playRound(humanChoice, computerChoice) {
@@ -39,6 +54,7 @@ function playRound(humanChoice, computerChoice) {
     message = "It's a tie."
   }
   gameMessage.textContent = message
+  renderScore()
 }
 
 btns.addEventListener("click", function(event) {
@@ -56,4 +72,6 @@ btns.addEventListener("click", function(event) {
       playRound(playerChoice, getComputerChoice())
       break;
   }
+
+  checkForWinner()
 })
