@@ -24,8 +24,10 @@ function renderScore() {
 function checkForWinner() {
   if (humanScore === 5) {
     gameMessage.textContent = 'You beat the computer!'
+    btns.style.display = "none"
   } else if (computerScore === 5) {
     gameMessage.textContent = 'You lost to the computer!'
+    btns.style.display = "none"
   }
 }
 
