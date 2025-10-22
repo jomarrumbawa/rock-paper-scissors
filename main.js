@@ -1,4 +1,5 @@
 const btns = document.querySelector("#btn-wrapper")
+const gameMessage = document.querySelector("#game-message")
 let humanScore = 0
 let computerScore = 0
 
@@ -14,41 +15,45 @@ function getHumanChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
+  let message = ""
+
   if (humanChoice == 'rock' && computerChoice == 'scissors') {
     humanScore++
-    console.log("You win! Rock beats scissors.")
+    message = "You win! Rock beats scissors."
   } else if (humanChoice == 'scissors' && computerChoice == 'paper') {
     humanScore++
-    console.log("You win! Scissors beats paper.")
+    message = "You win! Scissors beats paper."
   } else if (humanChoice == 'paper' && computerChoice == 'rock') {
     humanScore++
-    console.log("You win! Paper beats rock")
+    message = "You win! Paper beats rock"
   } else if (humanChoice == 'rock' && computerChoice == 'paper') {
     computerScore++
-    console.log("You lose! Paper beats rock.")
+    message = "You lose! Paper beats rock."
   } else if (humanChoice == 'paper' && computerChoice == 'scissors') {
     computerScore++
-    console.log("You lose! Scissors beats paper.")
+    message = "You lose! Scissors beats paper."
   } else if (humanChoice == 'scissors' && computerChoice == 'rock') {
     computerScore++
-    console.log("You lose! Rock beats scissors.")
+    message = "You lose! Rock beats scissors."
   } else {
-    console.log ("It's a tie.")
+    message = "It's a tie."
   }
+  gameMessage.textContent = message
 }
 
 btns.addEventListener("click", function(event) {
-  let target = event.target
+  const target = event.target
+  const playerChoice = target.textContent.toLowerCase()
 
-  switch(target.textContent.toLowerCase()) {
+  switch(playerChoice) {
     case 'rock':
-      console.log('rock');
+      playRound(playerChoice, getComputerChoice())
       break;
     case 'paper':
-      console.log('paper');
+      playRound(playerChoice, getComputerChoice());
       break;
     case 'scissors':
-      console.log('scissors');
+      playRound(playerChoice, getComputerChoice())
       break;
   }
 })
